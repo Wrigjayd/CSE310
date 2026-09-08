@@ -1,0 +1,38 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "cppbuild",
+            "label": "Build DND Vault GUI (UCRT64)",
+            "command": "C:\\msys64\\ucrt64\\bin\\g++.exe",
+            "args": [
+                "-fdiagnostics-color=always",
+                "-std=c++20",
+                "-IC:\\msys64\\ucrt64\\include",
+                "-LC:\\msys64\\ucrt64\\lib",
+                "${workspaceFolder}/DNDVaultGui.cpp",
+                "${workspaceFolder}/imgui.cpp",
+                "${workspaceFolder}/imgui_draw.cpp",
+                "${workspaceFolder}/imgui_widgets.cpp",
+                "${workspaceFolder}/imgui_tables.cpp",
+                "${workspaceFolder}/imgui_impl_glfw.cpp",
+                "${workspaceFolder}/imgui_impl_opengl3.cpp",
+                "-o",
+                "${workspaceFolder}/dnd_vault.exe",
+                "-lglfw",
+                "-lopengl32",
+                "-lgdi32"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "Native UCRT64 toolchain compiler script configuration for structural GUI bundles."
+        }
+    ]

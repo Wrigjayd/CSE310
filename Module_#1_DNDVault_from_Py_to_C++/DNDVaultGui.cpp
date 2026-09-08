@@ -25,8 +25,18 @@ const size_t ATTUNEMENT_INDEX = 1;
 const size_t PRICE_INDEX = 2;
 
 using CSVRow = std::vector<std::string>;
-using ItemDictionary = std::unordered_map<std::string, CSVRow>;
-using MasterDictionary = std::unordered_map<std::string, ItemDictionary>;
+// A struct that bundles the items hash map along with an insertion-order list
+struct OrderedDictionary {
+    std::unordered_map<std::string, CSVRow> itemMap;
+    std::vector<std::string> insertionOrder; // Tracks top-to-bottom CSV sequence
+    
+    // Helper function to reset both structures seamlessly
+    void clear() {
+        itemMap.clear();
+        insertionOrder.clear();
+    }
+};
+using MasterDictionary = std::unordered_map<std::string, OrderedDictionary>;
 
 struct PairKey {
     std::string rarity;
@@ -80,29 +90,34 @@ CSVRow parseCSVLine(const std::string& line) {
     return row;
 }
 
-ItemDictionary readDictionary(const std::string& filename, size_t keyWordIndex) {
-    ItemDictionary dict;
+OrderedDictionary readDictionary(const std::string& filename, size_t keyWordIndex) {
+    OrderedDictionary dict;
     std::ifstream file(filename);
     if (!file.is_open()) {
         std::cerr << "Warning: Could not open " << filename << "\n";
         return dict;
     }
     std::string line;
-    if (std::getline(file, line)) { }
+    if (std::getline(file, line)) { /* Skip Header */ }
 
     while (std::getline(file, line)) {
         if (line.empty()) continue;
         CSVRow row = parseCSVLine(line);
         if (keyWordIndex < row.size()) {
             std::string key = row[keyWordIndex];
-            dict[key] = row;
+            
+            // Only add to the order list if it's a unique new item name
+            if (dict.itemMap.find(key) == dict.itemMap.end()) {
+                dict.insertionOrder.push_back(key);
+            }
+            dict.itemMap[key] = row;
         }
     }
     return dict;
 }
 
-ItemDictionary readList(const std::string& filename) {
-    ItemDictionary dict;
+OrderedDictionary readList(const std::string& filename) {
+    OrderedDictionary dict;
     std::ifstream file(filename);
     if (!file.is_open()) return dict;
     std::string line;
@@ -111,18 +126,20 @@ ItemDictionary readList(const std::string& filename) {
         CSVRow row = parseCSVLine(line);
         if (!row.empty() && !row[0].empty()) { 
             std::string key = row[0];          
-            dict[key] = row;
+            if (dict.itemMap.find(key) == dict.itemMap.end()) {
+                dict.insertionOrder.push_back(key);
+            }
+            dict.itemMap[key] = row;
         }
     }
     return dict;
 }
 
-void appendMasterDictionary(MasterDictionary& masterDict, const ItemDictionary& dict, const std::string& rarity) {
+void appendMasterDictionary(MasterDictionary& masterDict, const OrderedDictionary& dict, const std::string& rarity) {
     masterDict[rarity] = dict;
 }
-
 // --- Lookup Logic Core ---
-ItemDictionary rarityCheck(std::string rarity, const MasterDictionary& masterDict) {
+OrderedDictionary rarityCheck(std::string rarity, const MasterDictionary& masterDict) {
     rarity = toLower(trim(rarity));
     for (const auto& [rarityKey, subDict] : masterDict) {
         if (toLower(rarityKey) == rarity) {
@@ -136,11 +153,12 @@ std::vector<std::pair<PairKey, CSVRow>> sourceCheck(std::string source, const Ma
     std::vector<std::pair<PairKey, CSVRow>> sourceItems;
     source = toLower(trim(source));
     for (const auto& [rarity, items] : masterDict) {
-        for (const auto& [itemNameKey, itemData] : items) {
+        for (const std::string& itemName : items.insertionOrder) {
+            const CSVRow& itemData = items.itemMap.at(itemName);
             if (itemData.empty()) continue;
             size_t targetIndex = itemData.size() - 1; 
             if (toLower(itemData[targetIndex]) == source) {
-                sourceItems.push_back({{rarity, itemNameKey}, itemData});
+                sourceItems.push_back({{rarity, itemName}, itemData});
             }
         }
     }
@@ -151,10 +169,11 @@ std::vector<std::pair<PairKey, CSVRow>> typeCheck(std::string type, const Master
     std::vector<std::pair<PairKey, CSVRow>> typeItems;
     type = toLower(trim(type));
     for (const auto& [rarity, items] : masterDict) {
-        for (const auto& [itemNameKey, itemData] : items) {
+        for (const std::string& itemName : items.insertionOrder) {
+            const CSVRow& itemData = items.itemMap.at(itemName);
             if (itemData.size() > TYPE_INDEX) {
                 if (toLower(itemData[TYPE_INDEX]) == type) {
-                    typeItems.push_back({{rarity, itemNameKey}, itemData});
+                    typeItems.push_back({{rarity, itemName}, itemData});
                 }
             }
         }
@@ -166,10 +185,8 @@ std::unordered_map<std::string, CSVRow> nameCheck(std::string itemName, const Ma
     std::unordered_map<std::string, CSVRow> userItems;
     itemName = toLower(trim(itemName));
     for (const auto& [rarity, items] : masterDict) {
-        for (const auto& [itemNameKey, itemData] : items) {
-            if (toLower(itemNameKey) == itemName) {
-                userItems[rarity] = itemData;
-            }
+        if (items.itemMap.find(itemName) != items.itemMap.end()) {
+        userItems[rarity] = items.itemMap.at(itemName);
         }
     }
     return userItems;
@@ -226,10 +243,9 @@ int main() {
     int currentMethod = 0; 
     const char* searchMethods[] = { "NAME", "TYPE", "SOURCE", "RARITY" };
 
-    // Fixed: Standardized result structures to ensure types clear completely on search reload
     std::unordered_map<std::string, CSVRow> nameResults;
     std::vector<std::pair<PairKey, CSVRow>> structuredResults; 
-    ItemDictionary rarityResults;
+    OrderedDictionary rarityResults;
 
     while (!glfwWindowShouldClose(window)) {
         glfwPollEvents(); 
@@ -248,7 +264,7 @@ int main() {
             
             nameResults.clear();
             structuredResults.clear();
-            rarityResults.clear();
+            rarityResults.clear(); // Fixed: Successfully calls custom inner clear mapping
 
             if (currentMethod == 0) {       
                 nameResults = nameCheck(searchQuery, masterDictionary);
@@ -264,37 +280,66 @@ int main() {
         ImGui::Text("Results:");
         ImGui::BeginChild("ScrollingResultRegion", ImVec2(0, 400), true);
 
-        // Rendering Loop 1: NAME Matches
-        for (const auto& [rarity, data] : nameResults) {
-            ImGui::TextColored(ImVec4(0.74f, 0.58f, 0.32f, 1.00f), "[%s] ", rarity.c_str());
-            ImGui::SameLine();
-            for (size_t i = 0; i < data.size(); ++i) {
-                ImGui::Text("%s %s", data[i].c_str(), (i < data.size() - 1) ? "|" : "");
-                ImGui::SameLine();
-            }
-            ImGui::NewLine();
-        }
-            
-            // Rendering Loop 2: TYPE & SOURCE Matches (Fixed structured vector extraction)
-        for (const auto& [key, data] : structuredResults) {
-            ImGui::TextColored(ImVec4(0.74f, 0.58f, 0.32f, 1.00f), "[%s] ", key.rarity.c_str());
-            ImGui::SameLine();
-            for (size_t i = 0; i < data.size(); ++i) {
-                ImGui::Text("%s %s", data[i].c_str(), (i < data.size() - 1) ? "|" : "");
-                ImGui::SameLine();
-            }
-            ImGui::NewLine();
-        }
-            // Rendering Loop 3: RARITY Matches (Fixed nested row processing)
-        for (const auto& [name, data] : rarityResults) {
-            ImGui::TextColored(ImVec4(0.74f, 0.58f, 0.32f, 1.00f), "[%s] ", name.c_str());
-            ImGui::SameLine();
-            for (size_t i = 0; i < data.size(); ++i) {
-                ImGui::Text("%s %s", data[i].c_str(), (i < data.size() - 1) ? "|" : "");
-                ImGui::SameLine();
-            }
+        bool hasResults = !nameResults.empty() || !structuredResults.empty() || !rarityResults.itemMap.empty();
 
-            ImGui::NewLine();
+        if (hasResults) {
+            ImGuiTableFlags tableFlags = ImGuiTableFlags_Borders | ImGuiTableFlags_RowBg | ImGuiTableFlags_Resizable | ImGuiTableFlags_ScrollY;
+            
+            if (ImGui::BeginTable("DndVaultItemTable", 5, tableFlags)) {
+                ImGui::TableSetupColumn("Item Name", ImGuiTableColumnFlags_WidthFixed, 220.0f);
+                ImGui::TableSetupColumn("Type", ImGuiTableColumnFlags_WidthFixed, 180.0f);
+                ImGui::TableSetupColumn("Attunement", ImGuiTableColumnFlags_WidthFixed, 140.0f);
+                ImGui::TableSetupColumn("Price", ImGuiTableColumnFlags_WidthFixed, 110.0f);
+                ImGui::TableSetupColumn("Source Book", ImGuiTableColumnFlags_WidthStretch);
+                ImGui::TableHeadersRow();
+
+                // Shared layout lambda to safely render column fields into the grid table 
+                auto DisplayRowInTable = [](const CSVRow& data) {
+                    ImGui::TableNextRow();
+                    
+                    ImGui::TableSetColumnIndex(0);
+                    ImGui::TextUnformatted(data.size() > 0 ? data[0].c_str() : "Unknown");
+
+                    ImGui::TableSetColumnIndex(1);
+                    ImGui::TextUnformatted(data.size() > 1 ? data[1].c_str() : "-");
+
+                    ImGui::TableSetColumnIndex(2);
+                    ImGui::TextUnformatted(data.size() > 2 ? data[2].c_str() : "-");
+
+                    ImGui::TableSetColumnIndex(3);
+                    ImGui::TextUnformatted(data.size() > 3 ? data[3].c_str() : "-");
+
+                    ImGui::TableSetColumnIndex(4);
+                    if (!data.empty()) {
+                        int lastValidIndex = data.size() - 1;
+                        while (lastValidIndex > 0 && data[lastValidIndex].empty()) {
+                            lastValidIndex--;
+                        }
+                        ImGui::TextUnformatted(data[lastValidIndex].c_str());
+                    } else {
+                        ImGui::TextUnformatted("-");
+                    }
+                };
+
+                // Populate Name results rows
+                for (const auto& [rarity, data] : nameResults) {
+                    DisplayRowInTable(data);
+                }
+                
+                // Populate Type & Source results rows (Maintains top-to-bottom sorting)
+                for (const auto& [key, data] : structuredResults) {
+                    DisplayRowInTable(data);
+                }
+                
+                // Fixed Render Loop 3: Pull rows via chronological entry tracking vector index sequences
+                for (const std::string& itemName : rarityResults.insertionOrder) {
+                    DisplayRowInTable(rarityResults.itemMap.at(itemName));
+                }
+
+                ImGui::EndTable();
+            }
+        } else {
+            ImGui::Text("No items match the current search query criteria.");
         }
 
         ImGui::EndChild();
@@ -309,13 +354,13 @@ int main() {
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
         glfwSwapBuffers(window);
-        }
+    }
 
-        ImGui_ImplOpenGL3_Shutdown();
-        ImGui_ImplGlfw_Shutdown();
-        ImGui::DestroyContext();
-        glfwDestroyWindow(window);
-        glfwTerminate();
+    ImGui_ImplOpenGL3_Shutdown();
+    ImGui_ImplGlfw_Shutdown();
+    ImGui::DestroyContext();
+    glfwDestroyWindow(window);
+    glfwTerminate();
 
-        return 0;
-        }
+    return 0;
+}
