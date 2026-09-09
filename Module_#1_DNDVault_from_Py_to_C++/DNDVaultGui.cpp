@@ -1,3 +1,11 @@
+/*
+Author:Jayden Wright
+
+Description: A recreation of a dnd item search. Allows the user to search for dnd items from 2024 and later editions.
+The items can be searched by name, type, rarity, or by source books.
+*/
+
+
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -36,6 +44,7 @@ struct OrderedDictionary {
         insertionOrder.clear();
     }
 };
+
 using MasterDictionary = std::unordered_map<std::string, OrderedDictionary>;
 
 struct PairKey {
@@ -44,6 +53,8 @@ struct PairKey {
 };
 
 // --- Core Helper Functions ---
+
+//trims excess whitespaces
 std::string trim(const std::string& str) {
     size_t first = str.find_first_not_of(" \t\r\n");
     if (first == std::string::npos) return "";
@@ -51,6 +62,7 @@ std::string trim(const std::string& str) {
     return str.substr(first, (last - first + 1));
 }
 
+// makes the search lower case to allow for better searching
 std::string toLower(std::string str) {
     std::transform(str.begin(), str.end(), str.begin(), [](unsigned char c) {
         return static_cast<char>(std::tolower(c));
@@ -58,6 +70,7 @@ std::string toLower(std::string str) {
     return str;
 }
 
+//split the csv
 std::vector<std::string> splitByComma(const std::string& input) {
     std::vector<std::string> result;
     std::stringstream ss(input);
@@ -71,6 +84,7 @@ std::vector<std::string> splitByComma(const std::string& input) {
     return result;
 }
 
+//read the csv
 CSVRow parseCSVLine(const std::string& line) {
     CSVRow row;
     std::string cell;
@@ -90,6 +104,7 @@ CSVRow parseCSVLine(const std::string& line) {
     return row;
 }
 
+//read the new ordered dictionary of the csv
 OrderedDictionary readDictionary(const std::string& filename, size_t keyWordIndex) {
     OrderedDictionary dict;
     std::ifstream file(filename);
@@ -116,6 +131,7 @@ OrderedDictionary readDictionary(const std::string& filename, size_t keyWordInde
     return dict;
 }
 
+//reading the sub dictionaries/data
 OrderedDictionary readList(const std::string& filename) {
     OrderedDictionary dict;
     std::ifstream file(filename);
@@ -138,7 +154,10 @@ OrderedDictionary readList(const std::string& filename) {
 void appendMasterDictionary(MasterDictionary& masterDict, const OrderedDictionary& dict, const std::string& rarity) {
     masterDict[rarity] = dict;
 }
+
 // --- Lookup Logic Core ---
+
+//rarity check
 OrderedDictionary rarityCheck(std::string rarity, const MasterDictionary& masterDict) {
     rarity = toLower(trim(rarity));
     for (const auto& [rarityKey, subDict] : masterDict) {
@@ -149,6 +168,7 @@ OrderedDictionary rarityCheck(std::string rarity, const MasterDictionary& master
     return {};
 }
 
+//source check
 std::vector<std::pair<PairKey, CSVRow>> sourceCheck(std::string source, const MasterDictionary& masterDict) {
     std::vector<std::pair<PairKey, CSVRow>> sourceItems;
     source = toLower(trim(source));
@@ -165,6 +185,7 @@ std::vector<std::pair<PairKey, CSVRow>> sourceCheck(std::string source, const Ma
     return sourceItems;
 }
 
+//item type check
 std::vector<std::pair<PairKey, CSVRow>> typeCheck(std::string type, const MasterDictionary& masterDict) {
     std::vector<std::pair<PairKey, CSVRow>> typeItems;
     type = toLower(trim(type));
@@ -181,6 +202,7 @@ std::vector<std::pair<PairKey, CSVRow>> typeCheck(std::string type, const Master
     return typeItems;
 }
 
+//name check
 std::unordered_map<std::string, CSVRow> nameCheck(std::string itemName, const MasterDictionary& masterDict) {
     std::unordered_map<std::string, CSVRow> userItems;
     itemName = toLower(trim(itemName));
@@ -192,6 +214,7 @@ std::unordered_map<std::string, CSVRow> nameCheck(std::string itemName, const Ma
     return userItems;
 }
 
+//just for looks. instead of a terminal looking one it looks like a search engine kinda dnd themed
 void ApplyDndVaultTheme() {
     ImGuiStyle& style = ImGui::GetStyle();
     ImVec4* colors = style.Colors;
@@ -215,6 +238,8 @@ void ApplyDndVaultTheme() {
 }
 
 int main() {
+    
+    //create a master dictionary
     MasterDictionary masterDictionary;
     appendMasterDictionary(masterDictionary, readDictionary("Master Magic Item List - Non Magic Items.csv", KEY_WORD_INDEX), "Non Magic");
     appendMasterDictionary(masterDictionary, readDictionary("Master Magic Item List - Common.csv", KEY_WORD_INDEX), "Common");
@@ -226,6 +251,8 @@ int main() {
     appendMasterDictionary(masterDictionary, readDictionary("Master Magic Item List - Materials.csv", KEY_WORD_INDEX), "Materials");
     appendMasterDictionary(masterDictionary, readDictionary("Master Magic Item List - Dragonmarks.csv", KEY_WORD_INDEX), "Dragonmark");
 
+
+    //gui Dear IMGui 
     if (!glfwInit()) return -1;
     GLFWwindow* window = glfwCreateWindow(1280, 720, "DND Vault GUI", nullptr, nullptr);
     if (!window) { glfwTerminate(); return -1; }
@@ -247,6 +274,12 @@ int main() {
     std::vector<std::pair<PairKey, CSVRow>> structuredResults; 
     OrderedDictionary rarityResults;
 
+    //created to keep track of what the user selects. allows for displaying of item description and an image of the item if applicable
+    static std::string selectedItemName = "";
+    static CSVRow selectedItemData;
+    static bool showItemDetails = false;
+
+
     while (!glfwWindowShouldClose(window)) {
         glfwPollEvents(); 
 
@@ -265,7 +298,7 @@ int main() {
             nameResults.clear();
             structuredResults.clear();
             rarityResults.clear(); // Fixed: Successfully calls custom inner clear mapping
-
+            showItemDetails = false;
             if (currentMethod == 0) {       
                 nameResults = nameCheck(searchQuery, masterDictionary);
             } else if (currentMethod == 1) { 
@@ -293,12 +326,20 @@ int main() {
                 ImGui::TableSetupColumn("Source Book", ImGuiTableColumnFlags_WidthStretch);
                 ImGui::TableHeadersRow();
 
-                // Shared layout lambda to safely render column fields into the grid table 
-                auto DisplayRowInTable = [](const CSVRow& data) {
+                // Shared layout to safely display column fields into the grid table 
+                auto DisplayRowInTable = [&](const CSVRow& data) {
                     ImGui::TableNextRow();
                     
                     ImGui::TableSetColumnIndex(0);
-                    ImGui::TextUnformatted(data.size() > 0 ? data[0].c_str() : "Unknown");
+                    std::string itemName = (data.size() > 0 ? data[0] : "Unknown");
+
+                    //for selectable items
+                    bool isSelected = (selectedItemName == itemName);
+                    if (ImGui::Selectable(itemName.c_str(), isSelected, ImGuiSelectableFlags_SpanAllColumns | ImGuiSelectableFlags_AllowDoubleClick)){
+                        selectedItemName = itemName;
+                        selectedItemData = data;
+                        showItemDetails = true;
+                    }
 
                     ImGui::TableSetColumnIndex(1);
                     ImGui::TextUnformatted(data.size() > 1 ? data[1].c_str() : "-");
@@ -326,12 +367,12 @@ int main() {
                     DisplayRowInTable(data);
                 }
                 
-                // Populate Type & Source results rows (Maintains top-to-bottom sorting)
+                // Populate Type & Source results rows (Maintains top-to-bottom sorting(which is alphabetically))
                 for (const auto& [key, data] : structuredResults) {
                     DisplayRowInTable(data);
                 }
                 
-                // Fixed Render Loop 3: Pull rows via chronological entry tracking vector index sequences
+                // Fixed display Loop 3: Pull rows via when they were added
                 for (const std::string& itemName : rarityResults.insertionOrder) {
                     DisplayRowInTable(rarityResults.itemMap.at(itemName));
                 }
@@ -345,6 +386,65 @@ int main() {
         ImGui::EndChild();
         ImGui::End();
 
+        //for selected items description window
+        if (showItemDetails && !selectedItemData.empty()){
+            ImGui::SetNextWindowSize(ImVec2(450, 550), ImGuiCond_FirstUseEver);
+            ImGui::Begin("Item Detail Profile Sheet", &showItemDetails, ImGuiWindowFlags_NoCollapse);
+
+            //print header
+            ImGui::TextColored(ImVec4(0.74f, 0.58f, 0.32f, 1.00f), "⚔️ D&D Item Profile: %s", selectedItemName.c_str());
+            ImGui::Separator();
+            ImGui::Spacing();
+
+            //display stat blocks
+            if (selectedItemData.size() > 1 && !selectedItemData.empty()) {
+                ImGui::Text("🛡️ Category/Type:  %s", selectedItemData[1].c_str());
+            }
+            if (selectedItemData.size() > 2 && !selectedItemData.empty()){
+                ImGui::Text("✨ Attunement:     %s", selectedItemData[2].c_str());
+            }
+            if (selectedItemData.size() > 3 && !selectedItemData.empty()){
+                ImGui::Text("🪙 Cost/Value:     %s", selectedItemData[3].c_str());
+            }
+
+            ImGui::Spacing();
+            ImGui::Separator();
+            ImGui::Spacing(); // Fixed: Added function parentheses
+
+            //display item text descriptions
+            ImGui::TextColored(ImVec4(0.74f, 0.58f, 0.32f, 1.00f), "📜 Properties & Lore Descriptions:");
+            ImGui::BeginChild("DescriptionTextPanel", ImVec2(0, 160), true, ImGuiWindowFlags_HorizontalScrollbar);
+
+            //loop through the column positions for extra details and sections
+            bool trackingDetailsFound = false;
+            for (size_t idx = 4; idx < selectedItemData.size(); ++idx) {
+                if(!selectedItemData[idx].empty()){
+                    //skips the source section if its the final section
+                    if (idx == selectedItemData.size() - 1) continue;
+
+                    ImGui::TextWrapped("%s", selectedItemData[idx].c_str());
+                    ImGui::Spacing();
+                    trackingDetailsFound = true;
+                }
+            }
+            ImGui::EndChild(); // Fixed: Added missing closure brace bracket for child window
+
+            //display source book info
+            if (!trackingDetailsFound){
+                int lastValidIndex = selectedItemData.size() - 1;
+                while (lastValidIndex > 0 && selectedItemData[lastValidIndex].empty()){ lastValidIndex--;}
+                ImGui::TextDisabled("Source Reference Book: [%s]", selectedItemData[lastValidIndex].c_str());
+            }
+            
+            ImGui::Spacing();
+
+            //place holder for images
+            ImGui::TextColored(ImVec4(0.3f, 0.6f, 0.9f, 1.00f), "[🖼️ Image Canvas Asset Art Frame Placeholder ]");
+            ImGui::TextWrapped("System Ready. Name your image file exactly '%s.png' and place it inside your folder context to bind visual textures natively later.", selectedItemName.c_str());
+
+            ImGui::End();
+        }
+
         ImGui::Render();
         int display_w, display_h;
         glfwGetFramebufferSize(window, &display_w, &display_h);
@@ -355,6 +455,7 @@ int main() {
 
         glfwSwapBuffers(window);
     }
+
 
     ImGui_ImplOpenGL3_Shutdown();
     ImGui_ImplGlfw_Shutdown();
