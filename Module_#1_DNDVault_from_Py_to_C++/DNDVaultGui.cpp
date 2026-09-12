@@ -25,12 +25,15 @@ The items can be searched by name, type, rarity, or by source books.
 // Window manager header
 #include <GLFW/glfw3.h>
 
+//rechanged and added more indexes as the code was not working correctly for name and source searches.
 const size_t KEY_WORD_INDEX = 0;
 const size_t ITEM_NAME_INDEX = 0;
-const int SOURCE_INDEX = -1; 
 const size_t TYPE_INDEX = 1;
-const size_t ATTUNEMENT_INDEX = 1;
-const size_t PRICE_INDEX = 2;
+const size_t ATTUNEMENT_INDEX = 2;
+const size_t PRICE_INDEX = 3;
+const size_t SOURCE_INDEX = 4;
+const size_t DAMAGE_INDEX = 5;
+const size_t DESCRIPTION_INDEX = 6;
 
 using CSVRow = std::vector<std::string>;
 // A struct that bundles the items hash map along with an insertion-order list
@@ -168,50 +171,109 @@ OrderedDictionary rarityCheck(std::string rarity, const MasterDictionary& master
     return {};
 }
 
-//source check
-std::vector<std::pair<PairKey, CSVRow>> sourceCheck(std::string source, const MasterDictionary& masterDict) {
-    std::vector<std::pair<PairKey, CSVRow>> sourceItems;
-    source = toLower(trim(source));
-    for (const auto& [rarity, items] : masterDict) {
-        for (const std::string& itemName : items.insertionOrder) {
-            const CSVRow& itemData = items.itemMap.at(itemName);
-            if (itemData.empty()) continue;
-            size_t targetIndex = itemData.size() - 1; 
-            if (toLower(itemData[targetIndex]) == source) {
-                sourceItems.push_back({{rarity, itemName}, itemData});
-            }
-        }
-    }
-    return sourceItems;
-}
+// SOURCE SEARCH turned into a vector search instead of an unordered map.
+std::vector<std::pair<PairKey, CSVRow>> sourceCheck(
+    std::string source,
+    const MasterDictionary& masterDict)
+{
+    std::vector<std::pair<PairKey, CSVRow>> results;
 
-//item type check
-std::vector<std::pair<PairKey, CSVRow>> typeCheck(std::string type, const MasterDictionary& masterDict) {
-    std::vector<std::pair<PairKey, CSVRow>> typeItems;
-    type = toLower(trim(type));
+    source = toLower(trim(source));
+
+    if (source.empty())
+        return results;
+
     for (const auto& [rarity, items] : masterDict) {
+
         for (const std::string& itemName : items.insertionOrder) {
+
             const CSVRow& itemData = items.itemMap.at(itemName);
-            if (itemData.size() > TYPE_INDEX) {
-                if (toLower(itemData[TYPE_INDEX]) == type) {
-                    typeItems.push_back({{rarity, itemName}, itemData});
+
+            if (itemData.size() > SOURCE_INDEX) {
+
+                std::string itemSource =
+                    toLower(trim(itemData[SOURCE_INDEX]));
+
+                if (itemSource.find(source) != std::string::npos) {
+                    results.push_back({
+                        { rarity, itemName },
+                        itemData
+                    });
                 }
             }
         }
     }
-    return typeItems;
+
+    return results;
 }
 
-//name check
-std::unordered_map<std::string, CSVRow> nameCheck(std::string itemName, const MasterDictionary& masterDict) {
-    std::unordered_map<std::string, CSVRow> userItems;
-    itemName = toLower(trim(itemName));
+// TYPE SEARCH turned into a vector instead of a unordered map
+std::vector<std::pair<PairKey, CSVRow>> typeCheck(
+    std::string type,
+    const MasterDictionary& masterDict)
+{
+    std::vector<std::pair<PairKey, CSVRow>> results;
+
+    type = toLower(trim(type));
+
+    if (type.empty())
+        return results;
+
     for (const auto& [rarity, items] : masterDict) {
-        if (items.itemMap.find(itemName) != items.itemMap.end()) {
-        userItems[rarity] = items.itemMap.at(itemName);
+
+        for (const std::string& itemName : items.insertionOrder) {
+
+            const CSVRow& itemData = items.itemMap.at(itemName);
+
+            if (itemData.size() > TYPE_INDEX) {
+
+                std::string itemType =
+                    toLower(trim(itemData[TYPE_INDEX]));
+
+                if (itemType.find(type) != std::string::npos) {
+                    results.push_back({
+                        { rarity, itemName },
+                        itemData
+                    });
+                }
+            }
         }
     }
-    return userItems;
+
+    return results;
+}
+
+//name check turned into a vector instead of an unordered map
+std::vector<std::pair<PairKey, CSVRow>> nameCheck(
+    std::string searchName,
+    const MasterDictionary& masterDict)
+{
+    std::vector<std::pair<PairKey, CSVRow>> results;
+
+    searchName = toLower(trim(searchName));
+
+    if (searchName.empty())
+        return results;
+
+    for (const auto& [rarity, items] : masterDict) {
+
+        for (const std::string& itemName : items.insertionOrder) {
+
+            const CSVRow& itemData = items.itemMap.at(itemName);
+
+            std::string loweredName = toLower(itemName);
+
+            // Partial match instead of exact match
+            if (loweredName.find(searchName) != std::string::npos) {
+                results.push_back({
+                    { rarity, itemName },
+                    itemData
+                });
+            }
+        }
+    }
+
+    return results;
 }
 
 //just for looks. instead of a terminal looking one it looks like a search engine kinda dnd themed
@@ -269,9 +331,9 @@ int main() {
     static char queryBuffer[256] = "";
     int currentMethod = 0; 
     const char* searchMethods[] = { "NAME", "TYPE", "SOURCE", "RARITY" };
-
-    std::unordered_map<std::string, CSVRow> nameResults;
-    std::vector<std::pair<PairKey, CSVRow>> structuredResults; 
+    
+    //changed to be vectors instead of unordered maps
+    std::vector<std::pair<PairKey, CSVRow>> searchResults;
     OrderedDictionary rarityResults;
 
     //created to keep track of what the user selects. allows for displaying of item description and an image of the item if applicable
@@ -292,28 +354,49 @@ int main() {
         ImGui::InputText("Query", queryBuffer, IM_ARRAYSIZE(queryBuffer));
         ImGui::Separator();
 
+        //changed to search through all of the csvs
         if (ImGui::Button("Execute Search", ImVec2(150, 30))) {
+
             std::string searchQuery(queryBuffer);
-            
-            nameResults.clear();
-            structuredResults.clear();
-            rarityResults.clear(); // Fixed: Successfully calls custom inner clear mapping
+
+            searchResults.clear();
+            rarityResults.clear();
             showItemDetails = false;
-            if (currentMethod == 0) {       
-                nameResults = nameCheck(searchQuery, masterDictionary);
-            } else if (currentMethod == 1) { 
-                structuredResults = typeCheck(searchQuery, masterDictionary);
-            } else if (currentMethod == 2) { 
-                structuredResults = sourceCheck(searchQuery, masterDictionary);
-            } else if (currentMethod == 3) { 
-                rarityResults = rarityCheck(searchQuery, masterDictionary);
+
+            if (currentMethod == 0) {
+
+                // Search by item name
+                searchResults =
+                    nameCheck(searchQuery, masterDictionary);
+
+            }
+            else if (currentMethod == 1) {
+
+                // Search by item type
+                searchResults =
+                    typeCheck(searchQuery, masterDictionary);
+
+            }
+            else if (currentMethod == 2) {
+
+                // Search by source book
+                searchResults =
+                    sourceCheck(searchQuery, masterDictionary);
+
+            }
+            else if (currentMethod == 3) {
+
+                // Search by rarity
+                rarityResults =
+                    rarityCheck(searchQuery, masterDictionary);
             }
         }
 
         ImGui::Text("Results:");
         ImGui::BeginChild("ScrollingResultRegion", ImVec2(0, 400), true);
 
-        bool hasResults = !nameResults.empty() || !structuredResults.empty() || !rarityResults.itemMap.empty();
+        //changed to better allow for the new search methods
+        bool hasResults = !searchResults.empty() || !rarityResults.itemMap.empty();
 
         if (hasResults) {
             ImGuiTableFlags tableFlags = ImGuiTableFlags_Borders | ImGuiTableFlags_RowBg | ImGuiTableFlags_Resizable | ImGuiTableFlags_ScrollY;
@@ -331,7 +414,8 @@ int main() {
                     ImGui::TableNextRow();
                     
                     ImGui::TableSetColumnIndex(0);
-                    std::string itemName = (data.size() > 0 ? data[0] : "Unknown");
+                    //changed to search name index correctly
+                    std::string itemName = (data.size() > ITEM_NAME_INDEX ? data[ITEM_NAME_INDEX] : "Unknown");
 
                     //for selectable items
                     bool isSelected = (selectedItemName == itemName);
@@ -341,40 +425,51 @@ int main() {
                         showItemDetails = true;
                     }
 
+                    //changed the table columns to better align with the updated csvs
+                    // Type
                     ImGui::TableSetColumnIndex(1);
-                    ImGui::TextUnformatted(data.size() > 1 ? data[1].c_str() : "-");
+                    ImGui::TextUnformatted(
+                        data.size() > TYPE_INDEX
+                            ? data[TYPE_INDEX].c_str()
+                            : "-"
+                    );
 
+                    // Attunement
                     ImGui::TableSetColumnIndex(2);
-                    ImGui::TextUnformatted(data.size() > 2 ? data[2].c_str() : "-");
+                    ImGui::TextUnformatted(
+                        data.size() > ATTUNEMENT_INDEX
+                            ? data[ATTUNEMENT_INDEX].c_str()
+                            : "-"
+                    );
 
+                    // Price
                     ImGui::TableSetColumnIndex(3);
-                    ImGui::TextUnformatted(data.size() > 3 ? data[3].c_str() : "-");
+                    ImGui::TextUnformatted(
+                        data.size() > PRICE_INDEX
+                            ? data[PRICE_INDEX].c_str()
+                            : "-"
+                    );
 
+                    // Source
                     ImGui::TableSetColumnIndex(4);
-                    if (!data.empty()) {
-                        int lastValidIndex = data.size() - 1;
-                        while (lastValidIndex > 0 && data[lastValidIndex].empty()) {
-                            lastValidIndex--;
-                        }
-                        ImGui::TextUnformatted(data[lastValidIndex].c_str());
-                    } else {
-                        ImGui::TextUnformatted("-");
-                    }
+                    ImGui::TextUnformatted(
+                        data.size() > SOURCE_INDEX
+                            ? data[SOURCE_INDEX].c_str()
+                            : "-"
+                    );
                 };
 
-                // Populate Name results rows
-                for (const auto& [rarity, data] : nameResults) {
+                
+                // Populate Name, Type, or Source search results. Changed for a more streamlined search method
+                for (const auto& [key, data] : searchResults) {
                     DisplayRowInTable(data);
                 }
-                
-                // Populate Type & Source results rows (Maintains top-to-bottom sorting(which is alphabetically))
-                for (const auto& [key, data] : structuredResults) {
-                    DisplayRowInTable(data);
-                }
-                
-                // Fixed display Loop 3: Pull rows via when they were added
+
+                // Populate rarity search results
                 for (const std::string& itemName : rarityResults.insertionOrder) {
-                    DisplayRowInTable(rarityResults.itemMap.at(itemName));
+                    DisplayRowInTable(
+                        rarityResults.itemMap.at(itemName)
+                    );
                 }
 
                 ImGui::EndTable();
@@ -396,44 +491,78 @@ int main() {
             ImGui::Separator();
             ImGui::Spacing();
 
-            //display stat blocks
-            if (selectedItemData.size() > 1 && !selectedItemData.empty()) {
-                ImGui::Text("🛡️ Category/Type:  %s", selectedItemData[1].c_str());
+            //display stat blocks. changed to better reflect new csvs
+            if (selectedItemData.size() > TYPE_INDEX &&
+                !selectedItemData[TYPE_INDEX].empty())
+            {
+                ImGui::Text(
+                    "Category/Type:  %s",
+                    selectedItemData[TYPE_INDEX].c_str()
+                );
             }
-            if (selectedItemData.size() > 2 && !selectedItemData.empty()){
-                ImGui::Text("✨ Attunement:     %s", selectedItemData[2].c_str());
+
+            if (selectedItemData.size() > ATTUNEMENT_INDEX &&
+                !selectedItemData[ATTUNEMENT_INDEX].empty())
+            {
+                ImGui::Text(
+                    "Attunement:     %s",
+                    selectedItemData[ATTUNEMENT_INDEX].c_str()
+                );
             }
-            if (selectedItemData.size() > 3 && !selectedItemData.empty()){
-                ImGui::Text("🪙 Cost/Value:     %s", selectedItemData[3].c_str());
+
+            if (selectedItemData.size() > PRICE_INDEX &&
+                !selectedItemData[PRICE_INDEX].empty())
+            {
+                ImGui::Text(
+                    "Cost/Value:     %s",
+                    selectedItemData[PRICE_INDEX].c_str()
+                );
             }
 
             ImGui::Spacing();
             ImGui::Separator();
-            ImGui::Spacing(); // Fixed: Added function parentheses
+            ImGui::Spacing(); 
 
             //display item text descriptions
-            ImGui::TextColored(ImVec4(0.74f, 0.58f, 0.32f, 1.00f), "📜 Properties & Lore Descriptions:");
+            ImGui::TextColored(ImVec4(0.74f, 0.58f, 0.32f, 1.00f), "Properties & Lore Descriptions:");
             ImGui::BeginChild("DescriptionTextPanel", ImVec2(0, 160), true, ImGuiWindowFlags_HorizontalScrollbar);
 
-            //loop through the column positions for extra details and sections
-            bool trackingDetailsFound = false;
-            for (size_t idx = 4; idx < selectedItemData.size(); ++idx) {
-                if(!selectedItemData[idx].empty()){
-                    //skips the source section if its the final section
-                    if (idx == selectedItemData.size() - 1) continue;
-
-                    ImGui::TextWrapped("%s", selectedItemData[idx].c_str());
-                    ImGui::Spacing();
-                    trackingDetailsFound = true;
-                }
+            // Display Damage
+            if (selectedItemData.size() > DAMAGE_INDEX &&
+                !selectedItemData[DAMAGE_INDEX].empty())
+            {
+                ImGui::TextWrapped(
+                    "Damage: %s",
+                    selectedItemData[DAMAGE_INDEX].c_str()
+                );
             }
-            ImGui::EndChild(); // Fixed: Added missing closure brace bracket for child window
 
-            //display source book info
-            if (!trackingDetailsFound){
-                int lastValidIndex = selectedItemData.size() - 1;
-                while (lastValidIndex > 0 && selectedItemData[lastValidIndex].empty()){ lastValidIndex--;}
-                ImGui::TextDisabled("Source Reference Book: [%s]", selectedItemData[lastValidIndex].c_str());
+            // Display Description
+            if (selectedItemData.size() > DESCRIPTION_INDEX &&
+                !selectedItemData[DESCRIPTION_INDEX].empty())
+            {
+                ImGui::TextWrapped(
+                    "%s",
+                    selectedItemData[DESCRIPTION_INDEX].c_str()
+                );
+            }
+            else
+            {
+                ImGui::TextDisabled(
+                    "No supplementary property or lore descriptions mapped for this catalog item."
+                );
+            }
+
+            ImGui::EndChild();
+
+            // Display Source Book
+            if (selectedItemData.size() > SOURCE_INDEX &&
+                !selectedItemData[SOURCE_INDEX].empty())
+            {
+                ImGui::TextDisabled(
+                    "Source Reference Book: [%s]",
+                    selectedItemData[SOURCE_INDEX].c_str()
+                );
             }
             
             ImGui::Spacing();

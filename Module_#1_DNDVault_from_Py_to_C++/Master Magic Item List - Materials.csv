@@ -1,10 +1,10 @@
-Name,Normal Price,Low Price,High Price
+﻿Name,Normal Price,Low Price,High Price
 Adamantite,200 gp,100 gp,300 gp
 Aerocrystal,400 gp,300 gp,600 gp
 Asmoroch Wood,400 gp,300 gp,600 gp
 Beast Feathers,CR% N.,CR% L.,CR% H.
 Bone,CR% N.,CR% L.,CR% H.
-Chitin CR% N.,CR% L.,CR% H.
+Chitin CR% N.,CR% L.,CR% H.,
 Cold Iron,100 gp,60 gp,200 gp
 Coral,100 gp,60 gp,200 gp
 Creature Hide ,CR% N.,CR% L.,CR% H.

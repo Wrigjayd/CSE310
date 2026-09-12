@@ -1,4 +1,4 @@
-Name,Type,Subtype,Cost,Cheap,Expensive,Source
+﻿Name,Type,Subtype,Cost,Cheap,Expensive,Source
 Acid (vial),Adventuring Gear,-,25.00 GP,18.75 GP,37.50 GP,PHB 2024
 Alchemist's Fire,Adventuring Gear,-,50.00 GP,37.50 GP,75.00 GP,PHB 2024
 Arrows (20),Adventuring Gear,Ammunition,1.00 GP,0.75 GP,1.50 GP,PHB 2024
@@ -71,7 +71,7 @@ Perfume,Adventuring Gear,-,5.00 GP,3.75 GP,7.50 GP,PHB 2024
 "Poison, Basic",Adventuring Gear,-,100.00 GP,75.00 GP,150.00 GP,PHB 2024
 Pole (10 feet),Adventuring Gear,-,0.05 GP,0.04 GP,0.08 GP,PHB 2024
 "Pot, Iron",Adventuring Gear,-,2.00 GP,1.50 GP,3.00 GP,PHB 2024
-Potion of Healing,Adventuring Gear,-,50.00 GP,37.50 GP,75.00 GP,PHB 2024
+Potion of Healing (Non Magic Items),Adventuring Gear,-,50.00 GP,37.50 GP,75.00 GP,PHB 2024
 Pouch,Adventuring Gear,-,0.50 GP,0.38 GP,0.75 GP,PHB 2024
 Priest's Pack,Adventuring Gear,-,33.00 GP,24.75 GP,49.50 GP,PHB 2024
 Quiver,Adventuring Gear,-,1.00 GP,0.75 GP,1.50 GP,PHB 2024
@@ -105,7 +105,7 @@ Ring Mail,Armor,Heavy Armor,30.00 GP,22.50 GP,45.00 GP,PHB 2024
 Chain Mail,Armor,Heavy Armor,75.00 GP,56.25 GP,112.50 GP,PHB 2024
 Splint Armor,Armor,Heavy Armor,200.00 GP,150.00 GP,300.00 GP,PHB 2024
 Plate Armor,Armor,Heavy Armor,"1,500.00 GP","1,125.00 GP","2,250.00 GP",PHB 2024
-Shield,Armor,Shield,10.00 GP,7.50 GP,15.00 GP,PHB 2024
+Shield (Non Magic Items),Armor,Shield,10.00 GP,7.50 GP,15.00 GP,PHB 2024
 Ale (mug),"Food, Drink, Lodging",Drink,0.04 GP,0.03 GP,0.06 GP,PHB 2024
 Bread (loaf),"Food, Drink, Lodging",Food,0.02 GP,0.02 GP,0.03 GP,PHB 2024
 Cheese (wedge),"Food, Drink, Lodging",Food,0.10 GP,0.08 GP,0.15 GP,PHB 2024
