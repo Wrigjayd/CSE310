@@ -1,0 +1,31 @@
+E:\Classes\Applied Programming\Git repository\CSE310\Module#2_C#\obj\Debug\net10.0-windows\App.g.cs
+E:\Classes\Applied Programming\Git repository\CSE310\Module#2_C#\obj\Debug\net10.0-windows\DndItemGenerator_MarkupCompile.cache
+E:\Classes\Applied Programming\Git repository\CSE310\Module#2_C#\obj\Debug\net10.0-windows\MainWIndow.baml
+E:\Classes\Applied Programming\Git repository\CSE310\Module#2_C#\obj\Debug\net10.0-windows\MainWIndow.g.cs
+E:\Classes\Applied Programming\Git repository\CSE310\Module#2_C#\obj\Debug\net10.0-windows\DndItemGenerator.g.resources
+E:\Classes\Applied Programming\Git repository\CSE310\Module#2_C#\obj\Debug\net10.0-windows\DndItemGenerator.GeneratedMSBuildEditorConfig.editorconfig
+E:\Classes\Applied Programming\Git repository\CSE310\Module#2_C#\obj\Debug\net10.0-windows\DndItemGenerator.AssemblyInfoInputs.cache
+E:\Classes\Applied Programming\Git repository\CSE310\Module#2_C#\obj\Debug\net10.0-windows\DndItemGenerator.AssemblyInfo.cs
+E:\Classes\Applied Programming\Git repository\CSE310\Module#2_C#\obj\Debug\net10.0-windows\DndItemGenerator.csproj.CoreCompileInputs.cache
+E:\Classes\Applied Programming\Git repository\CSE310\Module#2_C#\obj\Debug\net10.0-windows\DndItemGenerator.sourcelink.json
+E:\Classes\Applied Programming\Git repository\CSE310\Module#2_C#\bin\Debug\net10.0-windows\Data\Master Magic Item List - Artifact.csv
+E:\Classes\Applied Programming\Git repository\CSE310\Module#2_C#\bin\Debug\net10.0-windows\Data\Master Magic Item List - Common.csv
+E:\Classes\Applied Programming\Git repository\CSE310\Module#2_C#\bin\Debug\net10.0-windows\Data\Master Magic Item List - Dragonmarks.csv
+E:\Classes\Applied Programming\Git repository\CSE310\Module#2_C#\bin\Debug\net10.0-windows\Data\Master Magic Item List - Legendary.csv
+E:\Classes\Applied Programming\Git repository\CSE310\Module#2_C#\bin\Debug\net10.0-windows\Data\Master Magic Item List - Master.csv
+E:\Classes\Applied Programming\Git repository\CSE310\Module#2_C#\bin\Debug\net10.0-windows\Data\Master Magic Item List - Materials.csv
+E:\Classes\Applied Programming\Git repository\CSE310\Module#2_C#\bin\Debug\net10.0-windows\Data\Master Magic Item List - Non Magic Items.csv
+E:\Classes\Applied Programming\Git repository\CSE310\Module#2_C#\bin\Debug\net10.0-windows\Data\Master Magic Item List - Rare.csv
+E:\Classes\Applied Programming\Git repository\CSE310\Module#2_C#\bin\Debug\net10.0-windows\Data\Master Magic Item List - Uncommon.csv
+E:\Classes\Applied Programming\Git repository\CSE310\Module#2_C#\bin\Debug\net10.0-windows\Data\Master Magic Item List - Very Rare.csv
+E:\Classes\Applied Programming\Git repository\CSE310\Module#2_C#\bin\Debug\net10.0-windows\DndItemGenerator.exe
+E:\Classes\Applied Programming\Git repository\CSE310\Module#2_C#\bin\Debug\net10.0-windows\DndItemGenerator.deps.json
+E:\Classes\Applied Programming\Git repository\CSE310\Module#2_C#\bin\Debug\net10.0-windows\DndItemGenerator.runtimeconfig.json
+E:\Classes\Applied Programming\Git repository\CSE310\Module#2_C#\bin\Debug\net10.0-windows\DndItemGenerator.dll
+E:\Classes\Applied Programming\Git repository\CSE310\Module#2_C#\bin\Debug\net10.0-windows\DndItemGenerator.pdb
+E:\Classes\Applied Programming\Git repository\CSE310\Module#2_C#\obj\Debug\net10.0-windows\DndItemGenerator.dll
+E:\Classes\Applied Programming\Git repository\CSE310\Module#2_C#\obj\Debug\net10.0-windows\refint\DndItemGenerator.dll
+E:\Classes\Applied Programming\Git repository\CSE310\Module#2_C#\obj\Debug\net10.0-windows\DndItemGenerator.pdb
+E:\Classes\Applied Programming\Git repository\CSE310\Module#2_C#\obj\Debug\net10.0-windows\DndItemGenerator.genruntimeconfig.cache
+E:\Classes\Applied Programming\Git repository\CSE310\Module#2_C#\obj\Debug\net10.0-windows\ref\DndItemGenerator.dll
+E:\Classes\Applied Programming\Git repository\CSE310\Module#2_C#\obj\Debug\net10.0-windows\App.baml

@@ -1,0 +1,237 @@
+﻿Name,Type,Subtype,Cost,Cheap,Expensive,Source
+Acid (vial),Adventuring Gear,-,25.00 GP,18.75 GP,37.50 GP,PHB 2024
+Alchemist's Fire,Adventuring Gear,-,50.00 GP,37.50 GP,75.00 GP,PHB 2024
+Arrows (20),Adventuring Gear,Ammunition,1.00 GP,0.75 GP,1.50 GP,PHB 2024
+"Crossbow, Bolts (20)",Adventuring Gear,Ammunition,1.00 GP,0.75 GP,1.50 GP,PHB 2024
+"Bullets, Firearm (10)",Adventuring Gear,Ammunition,3.00 GP,2.25 GP,4.50 GP,PHB 2024
+"Bullets, Sling (20)",Adventuring Gear,Ammunition,0.04 GP,0.03 GP,0.06 GP,PHB 2024
+"Blowgun, Needles (50)",Adventuring Gear,Ammunition,1.00 GP,0.75 GP,1.50 GP,PHB 2024
+Antitoxin (vial),Adventuring Gear,-,50.00 GP,37.50 GP,75.00 GP,PHB 2024
+Crystal,Adventuring Gear,Arcane Focuses,10.00 GP,7.50 GP,15.00 GP,PHB 2024
+Orb,Adventuring Gear,Arcane Focuses,20.00 GP,15.00 GP,30.00 GP,PHB 2024
+Rod,Adventuring Gear,Arcane Focuses,10.00 GP,7.50 GP,15.00 GP,PHB 2024
+Staff (also a Quarterstaff),Adventuring Gear,Arcane Focuses,5.00 GP,3.75 GP,7.50 GP,PHB 2024
+Wand,Adventuring Gear,Arcane Focuses,10.00 GP,7.50 GP,15.00 GP,PHB 2024
+Backpack,Adventuring Gear,-,2.00 GP,1.50 GP,3.00 GP,PHB 2024
+Ball Bearings,Adventuring Gear,-,1.00 GP,0.75 GP,1.50 GP,PHB 2024
+Barrel,Adventuring Gear,-,2.00 GP,1.50 GP,3.00 GP,PHB 2024
+Basket,Adventuring Gear,-,0.40 GP,0.30 GP,0.60 GP,PHB 2024
+Bedroll,Adventuring Gear,-,1.00 GP,0.75 GP,1.50 GP,PHB 2024
+Bell,Adventuring Gear,-,1.00 GP,0.75 GP,1.50 GP,PHB 2024
+Blanket,Adventuring Gear,-,0.50 GP,0.38 GP,0.75 GP,PHB 2024
+Block and Tackle,Adventuring Gear,-,1.00 GP,0.75 GP,1.50 GP,PHB 2024
+Book,Adventuring Gear,-,25.00 GP,18.75 GP,37.50 GP,PHB 2024
+"Bottle, Glass",Adventuring Gear,-,2.00 GP,1.50 GP,3.00 GP,PHB 2024
+Bucket,Adventuring Gear,-,0.05 GP,0.04 GP,0.08 GP,PHB 2024
+Burglar's Pack,Adventuring Gear,-,16.00 GP,12.00 GP,24.00 GP,PHB 2024
+Caltrops,Adventuring Gear,-,1.00 GP,0.75 GP,1.50 GP,PHB 2024
+Candle,Adventuring Gear,-,0.01 GP,0.01 GP,0.02 GP,PHB 2024
+"Case, Crossbow Bolt",Adventuring Gear,-,1.00 GP,0.75 GP,1.50 GP,PHB 2024
+"Case, Map or Scroll",Adventuring Gear,-,1.00 GP,0.75 GP,1.50 GP,PHB 2024
+Chain (10 feet),Adventuring Gear,-,5.00 GP,3.75 GP,7.50 GP,PHB 2024
+Chest,Adventuring Gear,-,5.00 GP,3.75 GP,7.50 GP,PHB 2024
+Climber's Kit,Adventuring Gear,-,25.00 GP,18.75 GP,37.50 GP,PHB 2024
+"Clothes, Fine",Adventuring Gear,-,15.00 GP,11.25 GP,22.50 GP,PHB 2024
+"Clothes, Traveler's",Adventuring Gear,-,2.00 GP,1.50 GP,3.00 GP,PHB 2024
+Component Pouch,Adventuring Gear,-,25.00 GP,18.75 GP,37.50 GP,PHB 2024
+Costume,Adventuring Gear,-,5.00 GP,3.75 GP,7.50 GP,PHB 2024
+Crowbar,Adventuring Gear,-,2.00 GP,1.50 GP,3.00 GP,PHB 2024
+Diplomat's Pack,Adventuring Gear,-,39.00 GP,29.25 GP,58.50 GP,PHB 2024
+Sprig of Mistletoe,Adventuring Gear,Drudic Focus,1.00 GP,0.75 GP,1.50 GP,PHB 2024
+Wooden Staff (also a Quarterstaff),Adventuring Gear,Drudic Focus,5.00 GP,3.75 GP,7.50 GP,PHB 2024
+Yew Wand,Adventuring Gear,Drudic Focus,10.00 GP,7.50 GP,15.00 GP,PHB 2024
+Dungeoneer's Pack,Adventuring Gear,-,12.00 GP,9.00 GP,18.00 GP,PHB 2024
+Entertainer's Pack,Adventuring Gear,-,40.00 GP,30.00 GP,60.00 GP,PHB 2024
+Explorer's Pack,Adventuring Gear,-,10.00 GP,7.50 GP,15.00 GP,PHB 2024
+Flask,Adventuring Gear,-,0.02 GP,0.02 GP,0.03 GP,PHB 2024
+Grappling Hook,Adventuring Gear,-,2.00 GP,1.50 GP,3.00 GP,PHB 2024
+Healer's Kit,Adventuring Gear,-,5.00 GP,3.75 GP,7.50 GP,PHB 2024
+Amulet (worn or held),Adventuring Gear,Holy Symbol,5.00 GP,3.75 GP,7.50 GP,PHB 2024
+Emblem (borne on fabric or a Shield),Adventuring Gear,Holy Symbol,5.00 GP,3.75 GP,7.50 GP,PHB 2024
+Reliquary (held),Adventuring Gear,Holy Symbol,5.00 GP,3.75 GP,7.50 GP,PHB 2024
+Holy Water,Adventuring Gear,-,25.00 GP,18.75 GP,37.50 GP,PHB 2024
+Hunting Trap,Adventuring Gear,-,5.00 GP,3.75 GP,7.50 GP,PHB 2024
+Ink,Adventuring Gear,-,10.00 GP,7.50 GP,15.00 GP,PHB 2024
+Ink Pen,Adventuring Gear,-,0.02 GP,0.02 GP,0.03 GP,PHB 2024
+Jug,Adventuring Gear,-,0.02 GP,0.02 GP,0.03 GP,PHB 2024
+Ladder (10 feet),Adventuring Gear,-,0.10 GP,0.08 GP,0.15 GP,PHB 2024
+Lamp,Adventuring Gear,-,0.50 GP,0.38 GP,0.75 GP,PHB 2024
+"Lantern, Bullseye",Adventuring Gear,-,10.00 GP,7.50 GP,15.00 GP,PHB 2024
+"Lantern, Hooded",Adventuring Gear,-,5.00 GP,3.75 GP,7.50 GP,PHB 2024
+Lock,Adventuring Gear,-,10.00 GP,7.50 GP,15.00 GP,PHB 2024
+Magnifying Glass,Adventuring Gear,-,100.00 GP,75.00 GP,150.00 GP,PHB 2024
+Manacles,Adventuring Gear,-,2.00 GP,1.50 GP,3.00 GP,PHB 2024
+Map,Adventuring Gear,-,1.00 GP,0.75 GP,1.50 GP,PHB 2024
+Mirror,Adventuring Gear,-,5.00 GP,3.75 GP,7.50 GP,PHB 2024
+Net,Adventuring Gear,-,1.00 GP,0.75 GP,1.50 GP,PHB 2024
+Oil,Adventuring Gear,-,0.10 GP,0.08 GP,0.15 GP,PHB 2024
+Paper,Adventuring Gear,-,0.20 GP,0.15 GP,0.30 GP,PHB 2024
+Parchment,Adventuring Gear,-,0.10 GP,0.08 GP,0.15 GP,PHB 2024
+Perfume,Adventuring Gear,-,5.00 GP,3.75 GP,7.50 GP,PHB 2024
+"Poison, Basic",Adventuring Gear,-,100.00 GP,75.00 GP,150.00 GP,PHB 2024
+Pole (10 feet),Adventuring Gear,-,0.05 GP,0.04 GP,0.08 GP,PHB 2024
+"Pot, Iron",Adventuring Gear,-,2.00 GP,1.50 GP,3.00 GP,PHB 2024
+Potion of Healing (Non Magic Items),Adventuring Gear,-,50.00 GP,37.50 GP,75.00 GP,PHB 2024
+Pouch,Adventuring Gear,-,0.50 GP,0.38 GP,0.75 GP,PHB 2024
+Priest's Pack,Adventuring Gear,-,33.00 GP,24.75 GP,49.50 GP,PHB 2024
+Quiver,Adventuring Gear,-,1.00 GP,0.75 GP,1.50 GP,PHB 2024
+"Ram, Portable",Adventuring Gear,-,4.00 GP,3.00 GP,6.00 GP,PHB 2024
+Rations,Adventuring Gear,-,0.50 GP,0.38 GP,0.75 GP,PHB 2024
+Robe,Adventuring Gear,-,1.00 GP,0.75 GP,1.50 GP,PHB 2024
+Rope (50 feet),Adventuring Gear,-,1.00 GP,0.75 GP,1.50 GP,PHB 2024
+Sack,Adventuring Gear,-,0.01 GP,0.01 GP,0.02 GP,PHB 2024
+Scholar's Pack,Adventuring Gear,-,40.00 GP,30.00 GP,60.00 GP,PHB 2024
+Shovel,Adventuring Gear,-,2.00 GP,1.50 GP,3.00 GP,PHB 2024
+Signal Whistle,Adventuring Gear,-,0.05 GP,0.04 GP,0.08 GP,PHB 2024
+Spell Scroll (Cantrip),Adventuring Gear,-,30.00 GP,22.50 GP,45.00 GP,PHB 2024
+Spell Scroll (Level 1),Adventuring Gear,-,50.00 GP,37.50 GP,75.00 GP,PHB 2024
+"Spikes, Iron",Adventuring Gear,-,1.00 GP,0.75 GP,1.50 GP,PHB 2024
+Spyglass,Adventuring Gear,-,"1,000.00 GP",750.00 GP,"1,500.00 GP",PHB 2024
+String,Adventuring Gear,-,0.10 GP,0.08 GP,0.15 GP,PHB 2024
+Tent,Adventuring Gear,-,2.00 GP,1.50 GP,3.00 GP,PHB 2024
+Tinderbox,Adventuring Gear,-,0.50 GP,0.38 GP,0.75 GP,PHB 2024
+Torch,Adventuring Gear,-,0.01 GP,0.01 GP,0.02 GP,PHB 2024
+Vial,Adventuring Gear,-,1.00 GP,0.75 GP,1.50 GP,PHB 2024
+Waterskin,Adventuring Gear,-,0.20 GP,0.15 GP,0.30 GP,PHB 2024
+Padded Armor,Armor,Light Armor,5.00 GP,3.75 GP,7.50 GP,PHB 2024
+Leather Armor,Armor,Light Armor,10.00 GP,7.50 GP,15.00 GP,PHB 2024
+Studded Leather Armor,Armor,Light Armor,45.00 GP,33.75 GP,67.50 GP,PHB 2024
+Hide Armor,Armor,Medium Armor,10.00 GP,7.50 GP,15.00 GP,PHB 2024
+Chain Shirt,Armor,Medium Armor,50.00 GP,37.50 GP,75.00 GP,PHB 2024
+Scale Mail,Armor,Medium Armor,50.00 GP,37.50 GP,75.00 GP,PHB 2024
+Breastplate,Armor,Medium Armor,400.00 GP,300.00 GP,600.00 GP,PHB 2024
+Half Plate Armor,Armor,Medium Armor,750.00 GP,562.50 GP,"1,125.00 GP",PHB 2024
+Ring Mail,Armor,Heavy Armor,30.00 GP,22.50 GP,45.00 GP,PHB 2024
+Chain Mail,Armor,Heavy Armor,75.00 GP,56.25 GP,112.50 GP,PHB 2024
+Splint Armor,Armor,Heavy Armor,200.00 GP,150.00 GP,300.00 GP,PHB 2024
+Plate Armor,Armor,Heavy Armor,"1,500.00 GP","1,125.00 GP","2,250.00 GP",PHB 2024
+Shield (Non Magic Items),Armor,Shield,10.00 GP,7.50 GP,15.00 GP,PHB 2024
+Ale (mug),"Food, Drink, Lodging",Drink,0.04 GP,0.03 GP,0.06 GP,PHB 2024
+Bread (loaf),"Food, Drink, Lodging",Food,0.02 GP,0.02 GP,0.03 GP,PHB 2024
+Cheese (wedge),"Food, Drink, Lodging",Food,0.10 GP,0.08 GP,0.15 GP,PHB 2024
+"Inn Stay, Squalid","Food, Drink, Lodging",Lodging,0.07 GP,0.05 GP,0.11 GP,PHB 2024
+"Inn Stay, Poor","Food, Drink, Lodging",Lodging,0.10 GP,0.08 GP,0.15 GP,PHB 2024
+"Inn Stay, Modest","Food, Drink, Lodging",Lodging,0.50 GP,0.38 GP,0.75 GP,PHB 2024
+"Inn Stay, Comfortable","Food, Drink, Lodging",Lodging,0.80 GP,0.60 GP,1.20 GP,PHB 2024
+"Inn Stay, Wealthy","Food, Drink, Lodging",Lodging,2.00 GP,1.50 GP,3.00 GP,PHB 2024
+"Inn Stay, Aristocratic","Food, Drink, Lodging",Lodging,4.00 GP,3.00 GP,6.00 GP,PHB 2024
+"Meal, Squalid","Food, Drink, Lodging",Food,0.01 GP,0.01 GP,0.02 GP,PHB 2024
+"Meal, Poor","Food, Drink, Lodging",Food,0.02 GP,0.02 GP,0.03 GP,PHB 2024
+"Meal, Modest","Food, Drink, Lodging",Food,0.10 GP,0.08 GP,0.15 GP,PHB 2024
+"Meal, Comfortable","Food, Drink, Lodging",Food,0.20 GP,0.15 GP,0.30 GP,PHB 2024
+"Meal, Wealthy","Food, Drink, Lodging",Food,0.30 GP,0.23 GP,0.45 GP,PHB 2024
+"Meal, Aristocratic","Food, Drink, Lodging",Food,0.60 GP,0.45 GP,0.90 GP,PHB 2024
+"Wine, Common (bottle)","Food, Drink, Lodging",Drink,0.20 GP,0.15 GP,0.30 GP,PHB 2024
+"Wine, Fine (bottle)","Food, Drink, Lodging",Drink,10.00 GP,7.50 GP,15.00 GP,PHB 2024
+"Coach Ride, Between Towns (per mile)",Services,Travel,0.03 GP,0.02 GP,0.05 GP,PHB 2024
+"Coach Ride, Within City (per mile)",Services,Travel,0.01 GP,0.01 GP,0.02 GP,PHB 2024
+"Road/Gate, Toll",Services,Travel,0.01 GP,0.01 GP,0.02 GP,PHB 2024
+Ship's Passage (per mile),Services,Travel,0.10 GP,0.08 GP,0.15 GP,PHB 2024
+"Hirelings, Skilled (per day)",Services,Hirelings,2.00 GP,1.50 GP,3.00 GP,PHB 2024
+"Hirelings, Unskilled (per day)",Services,Hirelings,0.20 GP,0.15 GP,0.30 GP,PHB 2024
+"Hirelings, Messenger (per mile)",Services,Hirelings,0.02 GP,0.02 GP,0.03 GP,PHB 2024
+Cantrip,Services,Spellcasting,30.00 GP,22.50 GP,45.00 GP,PHB 2024
+Level 1,Services,Spellcasting,50.00 GP,37.50 GP,75.00 GP,PHB 2024
+Level 2,Services,Spellcasting,200.00 GP,150.00 GP,300.00 GP,PHB 2024
+Level 3,Services,Spellcasting,300.00 GP,225.00 GP,450.00 GP,PHB 2024
+Level 4-5,Services,Spellcasting,"2,000.00 GP","1,500.00 GP","3,000.00 GP",PHB 2024
+Level 6-8,Services,Spellcasting,"20,000.00 GP","15,000.00 GP","30,000.00 GP",PHB 2024
+Level 9,Services,Spellcasting,"100,000.00 GP","75,000.00 GP","150,000.00 GP",PHB 2024
+Alchemist's Supplies,Tools,Artisan's Tools,50.00 GP,37.50 GP,75.00 GP,PHB 2024
+Brewer's Supplies,Tools,Artisan's Tools,20.00 GP,15.00 GP,30.00 GP,PHB 2024
+Calligrapher's Supplies,Tools,Artisan's Tools,10.00 GP,7.50 GP,15.00 GP,PHB 2024
+Carpenter's Tools,Tools,Artisan's Tools,8.00 GP,6.00 GP,12.00 GP,PHB 2024
+Cartographer's Tools,Tools,Artisan's Tools,15.00 GP,11.25 GP,22.50 GP,PHB 2024
+Cobbler's Tools,Tools,Artisan's Tools,5.00 GP,3.75 GP,7.50 GP,PHB 2024
+Cook's Utensils,Tools,Artisan's Tools,1.00 GP,0.75 GP,1.50 GP,PHB 2024
+Glassblower's Tools,Tools,Artisan's Tools,30.00 GP,22.50 GP,45.00 GP,PHB 2024
+Jeweler's Tools,Tools,Artisan's Tools,25.00 GP,18.75 GP,37.50 GP,PHB 2024
+Leatherworker's Tools,Tools,Artisan's Tools,5.00 GP,3.75 GP,7.50 GP,PHB 2024
+Mason's Tools,Tools,Artisan's Tools,10.00 GP,7.50 GP,15.00 GP,PHB 2024
+Painter's Supplies,Tools,Artisan's Tools,10.00 GP,7.50 GP,15.00 GP,PHB 2024
+Potter's Tools,Tools,Artisan's Tools,10.00 GP,7.50 GP,15.00 GP,PHB 2024
+Smith's Tools,Tools,Artisan's Tools,20.00 GP,15.00 GP,30.00 GP,PHB 2024
+Tinker's Tools,Tools,Artisan's Tools,50.00 GP,37.50 GP,75.00 GP,PHB 2024
+Weaver's Tools,Tools,Artisan's Tools,1.00 GP,0.75 GP,1.50 GP,PHB 2024
+Woodcarver's Tools,Tools,Artisan's Tools,1.00 GP,0.75 GP,1.50 GP,PHB 2024
+Disguise Kit,Tools,-,25.00 GP,18.75 GP,37.50 GP,PHB 2024
+Forgery Kit,Tools,-,15.00 GP,11.25 GP,22.50 GP,PHB 2024
+Dice,Tools,Gaming Set,0.10 GP,0.08 GP,0.15 GP,PHB 2024
+Dragonchess,Tools,Gaming Set,1.00 GP,0.75 GP,1.50 GP,PHB 2024
+Playing Cards,Tools,Gaming Set,0.50 GP,0.38 GP,0.75 GP,PHB 2024
+Three-Dragon Ante,Tools,Gaming Set,1.00 GP,0.75 GP,1.50 GP,PHB 2024
+Herbalism Kit,Tools,-,5.00 GP,3.75 GP,7.50 GP,PHB 2024
+Bagpipes,Tools,Musical Instrument,30.00 GP,22.50 GP,45.00 GP,PHB 2024
+Drum,Tools,Musical Instrument,6.00 GP,4.50 GP,9.00 GP,PHB 2024
+Dulcimer,Tools,Musical Instrument,25.00 GP,18.75 GP,37.50 GP,PHB 2024
+Flute,Tools,Musical Instrument,2.00 GP,1.50 GP,3.00 GP,PHB 2024
+Horn,Tools,Musical Instrument,3.00 GP,2.25 GP,4.50 GP,PHB 2024
+Lute,Tools,Musical Instrument,12.00 GP,9.00 GP,18.00 GP,PHB 2024
+Lyre,Tools,Musical Instrument,20.00 GP,15.00 GP,30.00 GP,PHB 2024
+Pan Flute,Tools,Musical Instrument,12.00 GP,9.00 GP,18.00 GP,PHB 2024
+Shawm,Tools,Musical Instrument,2.00 GP,1.50 GP,3.00 GP,PHB 2024
+Viol,Tools,Musical Instrument,30.00 GP,22.50 GP,45.00 GP,PHB 2024
+Navigator's Tools,Tools,-,25.00 GP,18.75 GP,37.50 GP,PHB 2024
+Poisoner's Kit,Tools,-,50.00 GP,37.50 GP,75.00 GP,PHB 2024
+Thieves' Tools,Tools,-,25.00 GP,18.75 GP,37.50 GP,PHB 2024
+Camel,Transportation,Mounts and Other Animals,50.00 GP,37.50 GP,75.00 GP,PHB 2024
+Elephant,Transportation,Mounts and Other Animals,200.00 GP,150.00 GP,300.00 GP,PHB 2024
+"Horse, Draft",Transportation,Mounts and Other Animals,50.00 GP,37.50 GP,75.00 GP,PHB 2024
+"Horse, Riding",Transportation,Mounts and Other Animals,75.00 GP,56.25 GP,112.50 GP,PHB 2024
+Mastiff,Transportation,Mounts and Other Animals,25.00 GP,18.75 GP,37.50 GP,PHB 2024
+Mule,Transportation,Mounts and Other Animals,8.00 GP,6.00 GP,12.00 GP,PHB 2024
+Pony,Transportation,Mounts and Other Animals,30.00 GP,22.50 GP,45.00 GP,PHB 2024
+Warhorse,Transportation,Mounts and Other Animals,400.00 GP,300.00 GP,600.00 GP,PHB 2024
+Carriage,Transportation,"Track, Harness, and Drawn Vehicles",100.00 GP,75.00 GP,150.00 GP,PHB 2024
+Cart,Transportation,"Track, Harness, and Drawn Vehicles",15.00 GP,11.25 GP,22.50 GP,PHB 2024
+Chariot,Transportation,"Track, Harness, and Drawn Vehicles",250.00 GP,187.50 GP,375.00 GP,PHB 2024
+"Feed, Aminal",Transportation,"Track, Harness, and Drawn Vehicles",0.05 GP,0.04 GP,0.08 GP,PHB 2024
+"Sanddle, Exotic",Transportation,"Track, Harness, and Drawn Vehicles",60.00 GP,45.00 GP,90.00 GP,PHB 2024
+"Sanddle, Military",Transportation,"Track, Harness, and Drawn Vehicles",20.00 GP,15.00 GP,30.00 GP,PHB 2024
+"Sanddle, Riding",Transportation,"Track, Harness, and Drawn Vehicles",10.00 GP,7.50 GP,15.00 GP,PHB 2024
+Sled,Transportation,"Track, Harness, and Drawn Vehicles",20.00 GP,15.00 GP,30.00 GP,PHB 2024
+Stabling,Transportation,"Track, Harness, and Drawn Vehicles",0.50 GP,0.38 GP,0.75 GP,PHB 2024
+Wagon,Transportation,"Track, Harness, and Drawn Vehicles",35.00 GP,26.25 GP,52.50 GP,PHB 2024
+Airship,Transportation,Airborne and Waterborne Vehicles,"40,000.00 GP","30,000.00 GP","60,000.00 GP",PHB 2024
+Galley,Transportation,Airborne and Waterborne Vehicles,"30,000.00 GP","22,500.00 GP","45,000.00 GP",PHB 2024
+Keelboat,Transportation,Airborne and Waterborne Vehicles,"3,000.00 GP","2,250.00 GP","4,500.00 GP",PHB 2024
+Longship,Transportation,Airborne and Waterborne Vehicles,"10,000.00 GP","7,500.00 GP","15,000.00 GP",PHB 2024
+Rowboat,Transportation,Airborne and Waterborne Vehicles,50.00 GP,37.50 GP,75.00 GP,PHB 2024
+Sailing Ship,Transportation,Airborne and Waterborne Vehicles,"10,000.00 GP","7,500.00 GP","15,000.00 GP",PHB 2024
+Warship,Transportation,Airborne and Waterborne Vehicles,"25,000.00 GP","18,750.00 GP","37,500.00 GP",PHB 2024
+Club,Weapon,Simple Melee Weapons,0.10 GP,0.08 GP,0.15 GP,PHB 2024
+Dagger,Weapon,Simple Melee Weapons,2.00 GP,1.50 GP,3.00 GP,PHB 2024
+Greatclub,Weapon,Simple Melee Weapons,0.20 GP,0.15 GP,0.30 GP,PHB 2024
+Handaxe,Weapon,Simple Melee Weapons,5.00 GP,3.75 GP,7.50 GP,PHB 2024
+Javelin,Weapon,Simple Melee Weapons,0.50 GP,0.38 GP,0.75 GP,PHB 2024
+Light Hammer,Weapon,Simple Melee Weapons,2.00 GP,1.50 GP,3.00 GP,PHB 2024
+Mace,Weapon,Simple Melee Weapons,5.00 GP,3.75 GP,7.50 GP,PHB 2024
+Quarterstaff,Weapon,Simple Melee Weapons,0.20 GP,0.15 GP,0.30 GP,PHB 2024
+Sickle,Weapon,Simple Melee Weapons,1.00 GP,0.75 GP,1.50 GP,PHB 2024
+Spear,Weapon,Simple Melee Weapons,1.00 GP,0.75 GP,1.50 GP,PHB 2024
+Dart,Weapon,Simple Ranged Weapons,5.00 GP,3.75 GP,7.50 GP,PHB 2024
+"Crossbow, Light",Weapon,Simple Ranged Weapons,25.00 GP,18.75 GP,37.50 GP,PHB 2024
+Shortbow,Weapon,Simple Ranged Weapons,25.00 GP,18.75 GP,37.50 GP,PHB 2024
+Sling,Weapon,Simple Ranged Weapons,0.10 GP,0.08 GP,0.15 GP,PHB 2024
+Battleaxe,Weapon,Martial Melee Weapons,10.00 GP,7.50 GP,15.00 GP,PHB 2024
+Flail,Weapon,Martial Melee Weapons,10.00 GP,7.50 GP,15.00 GP,PHB 2024
+Glaive,Weapon,Martial Melee Weapons,20.00 GP,15.00 GP,30.00 GP,PHB 2024
+Greataxe,Weapon,Martial Melee Weapons,30.00 GP,22.50 GP,45.00 GP,PHB 2024
+Greatsword,Weapon,Martial Melee Weapons,50.00 GP,37.50 GP,75.00 GP,PHB 2024
+Halberd,Weapon,Martial Melee Weapons,20.00 GP,15.00 GP,30.00 GP,PHB 2024
+Lance,Weapon,Martial Melee Weapons,10.00 GP,7.50 GP,15.00 GP,PHB 2024
+Longsword,Weapon,Martial Melee Weapons,15.00 GP,11.25 GP,22.50 GP,PHB 2024
+Maul,Weapon,Martial Melee Weapons,10.00 GP,7.50 GP,15.00 GP,PHB 2024
+Morningstar,Weapon,Martial Melee Weapons,15.00 GP,11.25 GP,22.50 GP,PHB 2024
+Pike,Weapon,Martial Melee Weapons,5.00 GP,3.75 GP,7.50 GP,PHB 2024
+Rapier,Weapon,Martial Melee Weapons,25.00 GP,18.75 GP,37.50 GP,PHB 2024
+Scimitar,Weapon,Martial Melee Weapons,25.00 GP,18.75 GP,37.50 GP,PHB 2024
+Shortsword,Weapon,Martial Melee Weapons,10.00 GP,7.50 GP,15.00 GP,PHB 2024
+Trident,Weapon,Martial Melee Weapons,5.00 GP,3.75 GP,7.50 GP,PHB 2024
+Warhammer,Weapon,Martial Melee Weapons,15.00 GP,11.25 GP,22.50 GP,PHB 2024
+War Pick,Weapon,Martial Melee Weapons,5.00 GP,3.75 GP,7.50 GP,PHB 2024
+Whip,Weapon,Martial Melee Weapons,2.00 GP,1.50 GP,3.00 GP,PHB 2024
+Blowgun,Weapon,Martial Ranged Weapons,10.00 GP,7.50 GP,15.00 GP,PHB 2024
+"Crossbow, Hand",Weapon,Martial Ranged Weapons,75.00 GP,56.25 GP,112.50 GP,PHB 2024
+"Crossbow, Heavy",Weapon,Martial Ranged Weapons,50.00 GP,37.50 GP,75.00 GP,PHB 2024
+Longbow,Weapon,Martial Ranged Weapons,50.00 GP,37.50 GP,75.00 GP,PHB 2024

@@ -1,0 +1,164 @@
+<Application x:Class="DndItemGenerator.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             StartupUri="MainWindow.xaml">
+
+    <Application.Resources>
+
+        <!-- DND Vault color palette -->
+        <SolidColorBrush x:Key="WindowBackgroundBrush" Color="#171719"/>
+        <SolidColorBrush x:Key="PanelBackgroundBrush" Color="#1D1D21"/>
+        <SolidColorBrush x:Key="InputBackgroundBrush" Color="#29292D"/>
+        <SolidColorBrush x:Key="BlueAccentBrush" Color="#315988"/>
+        <SolidColorBrush x:Key="RedAccentBrush" Color="#9B1F1F"/>
+        <SolidColorBrush x:Key="RedHoverBrush" Color="#B52A2A"/>
+        <SolidColorBrush x:Key="RedPressedBrush" Color="#741515"/>
+        <SolidColorBrush x:Key="GoldBorderBrush" Color="#756039"/>
+        <SolidColorBrush x:Key="MainTextBrush" Color="#F1E9D2"/>
+        <SolidColorBrush x:Key="MutedTextBrush" Color="#C8C0AA"/>
+
+        <!-- Main window -->
+        <Style TargetType="Window">
+            <Setter Property="Background" Value="{StaticResource WindowBackgroundBrush}"/>
+            <Setter Property="Foreground" Value="{StaticResource MainTextBrush}"/>
+            <Setter Property="FontFamily" Value="Consolas"/>
+            <Setter Property="FontSize" Value="12"/>
+        </Style>
+
+        <!-- Normal text -->
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="{StaticResource MainTextBrush}"/>
+        </Style>
+
+        <!-- Red action buttons -->
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource RedAccentBrush}"/>
+            <Setter Property="Foreground" Value="{StaticResource MainTextBrush}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource RedAccentBrush}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="12,5"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="ButtonBorder"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="2"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="ButtonBorder"
+                                        Property="Background"
+                                        Value="{StaticResource RedHoverBrush}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="ButtonBorder"
+                                        Property="Background"
+                                        Value="{StaticResource RedPressedBrush}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Opacity" Value="0.45"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Text entry boxes -->
+        <Style TargetType="TextBox">
+            <Setter Property="Background" Value="{StaticResource InputBackgroundBrush}"/>
+            <Setter Property="Foreground" Value="{StaticResource MainTextBrush}"/>
+            <Setter Property="CaretBrush" Value="{StaticResource MainTextBrush}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource GoldBorderBrush}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="6,4"/>
+            <Setter Property="SelectionBrush" Value="{StaticResource BlueAccentBrush}"/>
+        </Style>
+
+        <!-- Dropdown boxes -->
+        <Style TargetType="ComboBox">
+            <Setter Property="Background" Value="{StaticResource InputBackgroundBrush}"/>
+            <Setter Property="Foreground" Value="{StaticResource MainTextBrush}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource GoldBorderBrush}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="5,3"/>
+        </Style>
+
+        <Style TargetType="ComboBoxItem">
+            <Setter Property="Background" Value="{StaticResource InputBackgroundBrush}"/>
+            <Setter Property="Foreground" Value="{StaticResource MainTextBrush}"/>
+            <Setter Property="Padding" Value="7,4"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{StaticResource BlueAccentBrush}"/>
+                </Trigger>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="{StaticResource RedAccentBrush}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Table -->
+        <Style TargetType="DataGrid">
+            <Setter Property="Background" Value="{StaticResource PanelBackgroundBrush}"/>
+            <Setter Property="Foreground" Value="{StaticResource MainTextBrush}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource GoldBorderBrush}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="GridLinesVisibility" Value="Horizontal"/>
+            <Setter Property="HorizontalGridLinesBrush" Value="#3A3428"/>
+            <Setter Property="VerticalGridLinesBrush" Value="#3A3428"/>
+            <Setter Property="RowBackground" Value="#202024"/>
+            <Setter Property="AlternatingRowBackground" Value="#25252A"/>
+            <Setter Property="RowHeaderWidth" Value="0"/>
+            <Setter Property="HeadersVisibility" Value="Column"/>
+        </Style>
+
+        <Style TargetType="DataGridColumnHeader">
+            <Setter Property="Background" Value="{StaticResource BlueAccentBrush}"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="#25466D"/>
+            <Setter Property="BorderThickness" Value="0,0,1,1"/>
+            <Setter Property="Padding" Value="8,6"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+        </Style>
+
+        <Style TargetType="DataGridRow">
+            <Setter Property="Foreground" Value="{StaticResource MainTextBrush}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="{StaticResource RedAccentBrush}"/>
+                    <Setter Property="Foreground" Value="White"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="DataGridCell">
+            <Setter Property="Foreground" Value="{StaticResource MainTextBrush}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="6,4"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="Foreground" Value="White"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Result/description boxes -->
+        <Style TargetType="GroupBox">
+            <Setter Property="Foreground" Value="{StaticResource MainTextBrush}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource GoldBorderBrush}"/>
+            <Setter Property="Background" Value="{StaticResource PanelBackgroundBrush}"/>
+            <Setter Property="Padding" Value="8"/>
+        </Style>
+
+    </Application.Resources>
+</Application>
