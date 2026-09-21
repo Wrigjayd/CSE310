@@ -9,10 +9,10 @@ namespace DndItemGenerator.Services
             string? selectedRarity,
             string? selectedType,
             string? selectedSource)
-        {
-            IEnumerable<MagicItem> result = items;
+        {//types of filters
+            IEnumerable<MagicItem> result = items;//start with every item
 
-            // RARITY
+            // Rarity
             if (!string.IsNullOrWhiteSpace(selectedRarity) &&
                 !selectedRarity.Equals(
                     "Any",
@@ -24,7 +24,7 @@ namespace DndItemGenerator.Services
                         StringComparison.OrdinalIgnoreCase));
             }
 
-            // TYPE
+            // Type
             if (!string.IsNullOrWhiteSpace(selectedType) &&
                 !selectedType.Equals(
                     "Any",
@@ -36,7 +36,7 @@ namespace DndItemGenerator.Services
                         selectedType));
             }
 
-            // SOURCE
+            // Source
             if (!string.IsNullOrWhiteSpace(selectedSource) &&
                 !selectedSource.Equals(
                     "Any",

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DndItemGenerator")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+485b2a1a4f1df43e43e60339d9f06eb8b90f06e6")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+06312c2f7f6089bb2dbf7e087f98c9670a03961e")]
 [assembly: System.Reflection.AssemblyProductAttribute("DndItemGenerator")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DndItemGenerator")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -6,7 +6,7 @@ namespace DndItemGenerator.Services
 {
     public static class CsvItemLoader
     {
-        public static List<MagicItem> LoadFile(string filePath)
+        public static List<MagicItem> LoadFile(string filePath)//load the files to read
         {
             List<MagicItem> items = new();
 
@@ -21,7 +21,7 @@ namespace DndItemGenerator.Services
             if (parser.EndOfData)
                 return items;
 
-            string[]? headers = parser.ReadFields();
+            string[]? headers = parser.ReadFields(); //reading headers
 
             if (headers == null)
                 return items;
@@ -45,7 +45,7 @@ namespace DndItemGenerator.Services
                 }
             }
 
-            while (!parser.EndOfData)
+            while (!parser.EndOfData) //read the data
             {
                 string[]? fields;
 
@@ -63,7 +63,7 @@ namespace DndItemGenerator.Services
                 if (fields == null)
                     continue;
 
-                string GetValue(string columnName)
+                string GetValue(string columnName)//looks for certain names in the dictionaries
                 {
                     if (!columnIndexes.TryGetValue(
                             columnName,
@@ -77,7 +77,7 @@ namespace DndItemGenerator.Services
 
                     return fields[index]?.Trim() ?? "";
                 }
-                //calling magic item class 
+                //calling magic item class and creating the magic items
                 MagicItem item = new()
                 {
                     Name = GetValue("Name"),
@@ -93,13 +93,13 @@ namespace DndItemGenerator.Services
                 if (!string.IsNullOrWhiteSpace(item.Name))
                 {
                     items.Add(item);
-                }
+                }//prevents black rows from being items
             }
 
             return items;
         }
         //read out the csv data into a list
-        public static List<MagicItem> LoadFolder(
+        public static List<MagicItem> LoadFolder(//open all the csvs at once
             string folderPath)
         {
             List<MagicItem> allItems = new();
@@ -123,7 +123,7 @@ namespace DndItemGenerator.Services
             return allItems;
         }
 
-        private static string GetRarityFromFileName(
+        private static string GetRarityFromFileName(//for searching by rarity get the rarity from the file name
             string filePath)
         {
             string fileName =

@@ -247,6 +247,7 @@ namespace DndItemGenerator
             object sender,
             RoutedEventArgs e)
         {
+            //if you dont generate a table the digital dice roller wont have what dice it needs
             if (_dicePlan == null ||
                 _currentTable.Count == 0)
             {
@@ -273,7 +274,7 @@ namespace DndItemGenerator
         {
             if (_dicePlan == null)
                 return;
-
+            //first trying the table in case of a higher number rolled then whats on the table.
             try
             {
                 int tableNumber =

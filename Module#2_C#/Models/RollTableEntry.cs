@@ -1,5 +1,6 @@
 namespace DndItemGenerator.Models
 {
+    //pairs the magic item to the rolled number
     public class RollTableEntry
     {
         public int RollNumber { get; set; }

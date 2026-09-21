@@ -7,15 +7,15 @@ namespace DndItemGenerator.Services
             4, 6, 8, 10, 12, 20, 100
         };
 
-        public List<int> Sides { get; }
+        public List<int> Sides { get; }//which dice to use so if its 20 it uses a D20 or 20,20 means 2d20
 
-        public int Capacity
+        public int Capacity //tells how many unique combos of dice can be used
         {
             get
             {
                 int total = 1;
 
-                foreach (int sides in Sides)
+                foreach (int sides in Sides)// is you have 1d20 the capacity is 20, if you have 2d20s you have 400 combos which is 20 * 20. or if say you have a d4 and a d6 the capacity is 24 4*6
                 {
                     total *= sides;
                 }
@@ -24,7 +24,7 @@ namespace DndItemGenerator.Services
             }
         }
 
-        public string Label
+        public string Label // groups the sides together and returns the dice name. so if you have 20, 20 it will return 2d20s.
         {
             get
             {
@@ -43,7 +43,7 @@ namespace DndItemGenerator.Services
             Sides = sides.ToList();
         }
 
-        public static DicePlan Create(int itemCount)
+        public static DicePlan Create(int itemCount)// decide which dice the user needs
         {
             if (itemCount <= 0)
                 throw new ArgumentException(
@@ -74,7 +74,7 @@ namespace DndItemGenerator.Services
                             Product(combo))
                         .ThenBy(combo =>
                             combo.Max())
-                        .ToList();
+                        .ToList(); // keep only the combo that will actually work.
 
                 if (possible.Count > 0)
                 {
@@ -86,7 +86,7 @@ namespace DndItemGenerator.Services
                 "Too many items for the current dice system.");
         }
 
-        private static int Product(IEnumerable<int> values)
+        private static int Product(IEnumerable<int> values) //multiply the dice together
         {
             int result = 1;
 
@@ -99,7 +99,7 @@ namespace DndItemGenerator.Services
         }
 
         private static IEnumerable<int[]>
-            GetCombinations(
+            GetCombinations( //recursive method to create possible combos of dice picking the best one
                 int[] values,
                 int length,
                 int startIndex = 0)
@@ -135,7 +135,7 @@ namespace DndItemGenerator.Services
             }
         }
 
-        public List<int> RollDigital()
+        public List<int> RollDigital()//if the user doesnt want to enter a physical dice roll they can use this instead
         {
             List<int> results = new();
 
@@ -143,12 +143,12 @@ namespace DndItemGenerator.Services
             {
                 results.Add(
                     Random.Shared.Next(1, sides + 1));
-            }
+            }// picks a random number from the die. so if you have a d6 and a d20 it would pick a random item 1-6 and then again for 1-20. so it could return 5 and 17.
 
             return results;
         }
 
-        public int ToTableNumber(
+        public int ToTableNumber(//ataches the roll to a table entry number
             IReadOnlyList<int> rolls)
         {
             if (rolls.Count != Sides.Count)
@@ -181,7 +181,7 @@ namespace DndItemGenerator.Services
 
         public static List<int> ParseRolls(string text)
         {
-            string[] pieces = text.Split(
+            string[] pieces = text.Split(//takes the physical dice roll entered by the user.
                 new[]
                 {
                     ',',

@@ -1,6 +1,6 @@
 namespace DndItemGenerator.Models
 {
-    public class MagicItem
+    public class MagicItem // this is a class representing one dnd item
     {
         //all of these come from the csv file structure.
         public string Name {get; set; } = "";
